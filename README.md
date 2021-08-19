@@ -15,15 +15,23 @@
  In the end to gauge the accuracy of our algorithm, the 11 dimensional actual weight and optimized weight are plotted against each other, with the actual weights in red and
  calculated weights in blue. 
  
-Task 1.1 : MSE loss: 1.61e-05
+Task 1.1 : MSE loss: 0.42e-05
 
-Task 1.2 : MSE loss: 0.42e-05
+Task 1.2 : MSE loss: 1.61e-05
 
 Task 1.3 : MSE loss: 0.02
 
 Task 1.4 : MSE loss: 0.15
 
-Loss (a): 
+Loss(a):
+
+This loss is better than the (b) loss as it accounts for the distance between the true and predicted values. When they are very far, it descends quickly and slows the descent
+closer to the objective. This results in slightly better results compared to the (b) loss. The problem of exploding and vanishing gradients first appears here. The gradient can
+die off close to the objective as there is an exponent of two associated withthe difference. Exploding gradients present a bigger problem. If the loss is too big, then after being
+multiplied by the learning rate it has the potential to cause an over-correction. This can lead to the loss in the second iteration being greater than before. This is because of
+the cube in the loss. 
+
+Loss (b): 
 
 This loss applies a constant magnitude gradient for any difference between the true and predicted values. This means it does not suffer from the issue of exploding and vanishing
 gradients. But this also means that gradient descent can be very slow if the weights are very far from the true weights. Since it does not account for the distance, the initial
@@ -34,13 +42,6 @@ Apart from this there is another problem with this loss. When the weights are ve
 gradually nudge the weights in the correct direction. However the constant gradient offered by this loss means there may be an 'overshooting' problem as the gradients over-correct
 the weights repeatedly preventing the loss from decresing beyond a certain value. The asymptote seen here is most probably a manifestation of that.
 
-Loss(b):
-
-This loss is better than the first loss as it accounts for the distance between the true and predicted values. When they are very far, it descends quickly and slows the descent
-closer to the objective. This results in slightly better results compared to the first loss. The problem of exploding and vamishing gradients first appears here. The gradient can
-die off close to the objective as there is an exponent of two associated withthe difference. Exploding gradients present a bigger problem. If the loss is too big, then after being
-multiplied by the learning rate it has the potential to cause an over-correction. This can lead to the loss in the second iteration being greater than before. This is because of
-the cube in the loss. 
 
 Loss(c)
 
